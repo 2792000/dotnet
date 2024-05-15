@@ -92,7 +92,7 @@ namespace Reservation_Foyer.Controllers
 
                 _context.Add(user);
                 _context.SaveChanges();
-            SendEmail(user.Email,user.Name, originalPassword);
+       
             return RedirectToAction("Index");
             
         }
@@ -113,41 +113,7 @@ namespace Reservation_Foyer.Controllers
            
         }
         // Method to send an email
-        private void SendEmail(string toEmail, string name, string password)
-        {
-            try
-            {
-                var fromAddress = new MailAddress("mohamedhlel321@gmail.com", "Gestion des Foyer");
-                var toAddress = new MailAddress(toEmail);
-                const string fromPassword = "twuj orqz ufoa ynsd";
-                const string subject = "Welcome to Our Application University Hostel Management";
-                string body = $"Dear {name},\n\nYour account has been created successfully \n\n  The login : {toEmail} \n\n the password: {password}.\n\nBest regards,\n";
-
-                var smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
-
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    Body = body
-                })
-                {
-                    smtp.Send(message);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions here (e.g., log the error)
-                Console.WriteLine("Error sending email: " + ex.Message);
-            }
-        }
+       
 
         // GET: Users/Edit/5
         public IActionResult Edit(int? id)

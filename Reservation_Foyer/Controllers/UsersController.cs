@@ -86,8 +86,7 @@ namespace Reservation_Foyer.Controllers
         public IActionResult Create(User user)
         {
 
-            // Hash the password before saving it to the database
-            string originalPassword = user.Password;
+      
              user.Password = GetMd5Hash(user.Password);
 
                 _context.Add(user);
@@ -112,7 +111,7 @@ namespace Reservation_Foyer.Controllers
             
            
         }
-        // Method to send an email
+   
        
 
         // GET: Users/Edit/5
